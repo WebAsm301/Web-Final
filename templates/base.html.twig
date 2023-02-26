@@ -1,3 +1,4 @@
+{% include 'baseadmin.html.twig' %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +8,84 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <style>
+            .main_menu {
+                outline: none;
+                border: none;
+            }
+
+            .menu {
+                margin: auto;
+                padding: 10px 18px;
+                font-size: 15px;
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+                color: #90e0ef;
+                background-color: #0096c7;
+                border: none;
+                border-radius: 12px;
+                box-shadow: 0 6px #01161e;
+            }
+
+            .menu:hover {
+                background-color: #0077b6
+            }
+
+            .menu:active {
+                background-color: #0077b6;
+                box-shadow: 0 5px #01161e;
+                transform: translateY(4px);
+            }
+
+            a:link {
+                color: #90e0ef;
+                background-color: transparent;
+                text-decoration: none;
+            }
+
+            body {
+                background-color: #3a0ca3;
+            }
+
+            table, tr, th {
+                
+                border: 1px solid;
+                text-align: center;
+            }
+
+            table {
+                
+                margin: auto;
+            }
+
+            h1 {
+                color: white;
+                text-align: center;
+            }
+
+            p, ul {
+                color: white;
+                margin-left: 15%;
+                margin-right: 15%;
+            }
+
+            tr {
+                background: #219ebc;
+                align: center;
+            }
+
+            td {
+                background-color: #8ecae6;
+            }
+
+            button {
+                border-radius: 16px;
+                border-color: #a2d2ff;
+                background-color: #bde0fe;
+            }
+
+            </style>
         {% endblock %}
 
         {% block javascripts %}
