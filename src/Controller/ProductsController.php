@@ -26,17 +26,19 @@ class ProductsController extends AbstractController
         ]);
     }
     /**
+     * Create a new product.
+     * 
      * @Route("/new", name="app_products_new", methods={"GET", "POST"})
      */
-    #[Route('/new', name: 'app_products_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProductsRepository $productsRepository): Response
     {
         $product = new Products();
-        $form = $this->createForm(ProductsType::class, $product);
+        $form = $this->createForm('App\Form\ProductsType', $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productsRepository->add($product);
+            
             return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
         }
 
