@@ -4,8 +4,9 @@
         <header>
             <table class="main_menu">
                 <tr>
+                    <td class="menu"><a href="{{ path('app_home') }}">Home</a></td>
                     <td class="menu"><a href="{{ path('app_about') }}">About</a></td>
-                    <td class="menu"><a href="{{ path('app_orders') }}">Orders</a></td>
+                    <td class="menu"><a href="{{ path('app_orders_index') }}">Orders</a></td>
                     <td class="menu"><a href="{{ path('app_products_index') }}">Products</a></td>
                     <td class="menu"><a href="{{ path('app_suppliers') }}">Suppliers</a></td>
                 </tr>
@@ -13,3 +14,4 @@
         </header>
     {% endblock %}
 </html>
+
