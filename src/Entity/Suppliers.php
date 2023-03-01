@@ -25,6 +25,16 @@ class Suppliers
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $Product;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $Quantity;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $Supplier_nation;
 
     public function getId(): ?int
@@ -40,6 +50,30 @@ class Suppliers
     public function setSupplierName(string $Supplier_name): self
     {
         $this->Supplier_name = $Supplier_name;
+
+        return $this;
+    }
+
+    public function getProduct(): ?string
+    {
+        return $this->Product;
+    }
+
+    public function setProduct(string $Product): self
+    {
+        $this->Product = $Product;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->Quantity;
+    }
+
+    public function setQuantity(int $Quantity): self
+    {
+        $this->Quantity = $Quantity;
 
         return $this;
     }
