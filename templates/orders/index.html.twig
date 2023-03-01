@@ -25,7 +25,7 @@
                 <td>
                     <button><a href="{{ path('app_orders_show', {'id': order.id}) }}" class="btn btn-success">show</a></button>
                     <button><a href="{{ path('app_orders_edit', {'id': order.id}) }}" class="btn btn-warning">edit</a></button>
-                    <button><a href="{{ path('app_orders_delete', {'id': order.id}) }}" class="btn btn-danger" onclick = "return confirm('Are u sure u want to delete?')">delete</a></button>
+                    <button class="delete_btn"><a href="{{ path('app_orders_delete', {'id': order.id}) }}" class="btn btn-danger" onclick = "return confirm('Are u sure u want to delete?')">delete</a></button>
                 </td>
             </tr>
         {% else %}
@@ -36,7 +36,7 @@
         </tbody>
     </table>
 
-        <ul><a href="{{ path('app_orders_new') }}" class="btn btn-primary">Create new</a></ul>
+        <button><a href="{{ path('app_orders_new') }}" class="btn btn-primary">Create new</a></button>
 
 {% endblock %}
 
