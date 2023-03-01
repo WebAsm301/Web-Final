@@ -88,22 +88,23 @@ class ProductsController extends AbstractController
   }
 
   /**
-   *
-   * @Route("/{id}", name="app_products_delete", methods={"DELETE"})
-   */
-  public function deleteAction(Request $request, Products $products)
-  {
-    $form = $this->createDeleteForm($products);
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-      $em = $this->getDoctrine()->getManager();
-      $em->remove($products);
-      $em->flush();
-    }
-
+ * @Route("/products/{id}", name="app_products_delete")
+ */
+public function deleteAction($id)
+{
+    $em = $this->getDoctrine()->getManager();
+    $products = $em->getRepository('App\Entity\Products')->find($id);
+    $em->remove($products);
+    $em->flush();
+    
+    $this->addFlash(
+        'error',
+        'Products deleted'
+    );
+    
     return $this->redirectToRoute('app_products_index');
-  }
+}
+
 
   /**
    *
@@ -118,4 +119,6 @@ class ProductsController extends AbstractController
       ->setMethod('DELETE')
       ->getForm();
   }
+
+  
 }
