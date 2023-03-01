@@ -42,6 +42,8 @@ class Products
      */
     private $Status;
 
+    
+
     public function getId(): ?int
     {
         return $this->id;
