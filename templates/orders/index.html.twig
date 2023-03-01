@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders index{% endblock %}
+
+{% block body %}
+    <h1>Orders</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Delivery</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.Date ? order.Date|date('Y-m-d') : '' }}</td>
+                <td>{{ order.Delivery ? order.Date|date('Y-m-d') : '' }}</td>
+                <td>{{ order.Status }}</td>
+                <td>
+                    <button><a href="{{ path('app_orders_show', {'id': order.id}) }}" class="btn btn-success">show</a></button>
+                    <button><a href="{{ path('app_orders_edit', {'id': order.id}) }}" class="btn btn-warning">edit</a></button>
+                    <button><a href="{{ path('app_orders_delete', {'id': order.id}) }}" class="btn btn-danger" onclick = "return confirm('Are u sure u want to delete?')">delete</a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul><a href="{{ path('app_orders_new') }}" class="btn btn-primary">Create new</a></ul>
+
+{% endblock %}
+

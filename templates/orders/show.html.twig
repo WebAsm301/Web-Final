@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <h1>Orders</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ orders.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ orders.Date|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Delivery</th>
+                <td>{{ orders.Delivery|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ orders.Status }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>
+        <button><a href="{{ path('app_orders_index') }}">back to list</a></button>
+        </li>
+        <li>
+        <button><a href="{{ path('app_orders_edit', {'id': orders.id}) }}">edit</a></button>
+        </li>
+        <li onclick = "return confirm('Are u sure u want to delete?')">
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+
