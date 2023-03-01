@@ -6,11 +6,11 @@ use App\Entity\Products;
 use App\Form\ProductsType;
 use App\Repository\ProductsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\AddToCartType;
-use App\Manager\CartManager;
+use App\Form\AbstractType;
 /**
  * @Route("/products")
  */
@@ -38,6 +38,9 @@ class ProductsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productsRepository->add($product);
+            $productsRepository = $this->getDoctrine()->getManager();
+            $productsRepository->persist($product);
+            $productsRepository->flush();
             
             return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -47,71 +50,72 @@ class ProductsController extends AbstractController
             'form' => $form,
         ]);
     }
-    /**
-     * @Route("/product/{id}/detail", name="product.detail")
-     */
-    public function detail(Products $product, Request $request, CartManager $cartManager): Response
-    {
-        $form = $this->createForm(AddToCartType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $item = $form->getData();
-            $item->setproduct($product);
-
-            $cart = $cartManager->getCurrentCart();
-            $cart
-                ->addItem($item)
-                ->setDate(new \DateTime());
-
-            $cartManager->save($cart);
-
-            return $this->redirectToRoute('product.detail', ['id' => $product->getId()]);
-        }
-        return $this->render('products/detail.html.twig', [
-            'product' => $product,
-            'form' => $form->createView()
-        ]);
-    }
-
 
     /**
-     * @Route("/{id}", name="app_products_show", methods={"GET"})
-     */
-    public function show(Products $product): Response
-    {
-        return $this->render('products/show.html.twig', [
-            'product' => $product,
-        ]);
-    }
-    
-    /**
+   *
+   * @Route("/{id}",methods={"GET"} ,name="app_products_show")
+   */
+  public function showAction(Products $products)
+  {
+    $deleteForm = $this->createDeleteForm($products);
+
+    return $this->render('products/show.html.twig', array(
+      'products' => $products,
+      'delete_form' => $deleteForm->createView(),
+    ));
+  }
+
+  /**
      * @Route("/{id}/edit", name="app_products_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Products $product, ProductsRepository $productsRepository): Response
-    {
-        $form = $this->createForm(ProductsType::class, $product);
-        $form->handleRequest($request);
+  public function editAction(Request $request, Products $products)
+  {
+    $deleteForm = $this->createDeleteForm($products);
+    $editForm = $this->createForm(ProductsType::class, $products);
+    $editForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $productsRepository->add($product);
-            return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
-        }
+    if ($editForm->isSubmitted() && $editForm->isValid()) {
+      $this->getDoctrine()->getManager()->flush();
 
-        return $this->renderForm('products/edit.html.twig', [
-            'product' => $product,
-            'form' => $form,
-        ]);
+      return $this->redirectToRoute('app_products_edit', array('id' => $products->getId()));
     }
 
-    /**
-     * @Route("/{id}", name="app_products_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Products $product, ProductsRepository $productsRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
-            $productsRepository->remove($product);
-        }
+    return $this->render('products/edit.html.twig', array(
+      'products' => $products,
+      'edit_form' => $editForm->createView(),
+      'delete_form' => $deleteForm->createView(),
+    ));
+  }
 
-        return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
+  /**
+   *
+   * @Route("/{id}", name="app_products_delete", methods={"DELETE"})
+   */
+  public function deleteAction(Request $request, Products $products)
+  {
+    $form = $this->createDeleteForm($products);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($products);
+      $em->flush();
     }
+
+    return $this->redirectToRoute('app_products_index');
+  }
+
+  /**
+   *
+   * @param Products $products The product entity
+   *
+   * @return Form The form
+   */
+  private function createDeleteForm(Products $products): Form
+  {
+    return $this->createFormBuilder()
+      ->setAction($this->generateUrl('app_products_delete', array('id' => $products->getId())))
+      ->setMethod('DELETE')
+      ->getForm();
+  }
 }
