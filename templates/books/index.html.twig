@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books list{% endblock %}
+
+{% block body %}
+    <h1>Books list</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>actions</th>
+            </tr>
+        </tbody>
+        <tbody>
+        {% for Books in books %}
+            <tr>
+                <td>{{ Books.id }}</td>
+                <td>{{ Books.Bookname }}</td>
+                <td>{{ Books.Quantity }}</td>
+                <td>
+                    <button><a href="{{ path('app_books_show', {'id': Books.id}) }}" class="btn btn-success">show</a></button>
+                    <button><a href="{{ path('app_books_edit', {'id': Books.id}) }}" class="btn btn-warning">edit</a></button>
+                    <button class="delete_btn"><a href="{{ path('app_books_delete', {'id': Books.id}) }}" class='btn btn-danger' onclick = "return confirm('Are u sure u want to delete?')">Delete</a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_books_new') }}">Create new</a>
+{% endblock %}
