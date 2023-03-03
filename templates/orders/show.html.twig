@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <h1>Orders</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ orders.id }}</td>
+            </tr>
+            <tr>
+                <th>Product</th>
+                <td>{{ orders.products.suppliers.books.bookname }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ orders.Date|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Customer</th>
+                <td>{{ orders.customers.customername }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ orders.products.price }}$</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <ul>
+        <button><a href="{{ path('app_orders_index') }}">back to list</a></button>
+        </ul>
+    </ul>
+{% endblock %}

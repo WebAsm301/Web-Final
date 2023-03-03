@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Add new order</h1>
+
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button input type="submit" value="Create">Create</button>
+	{{ form_end(form) }}
+
+    <button><a href="{{ path('app_orders_index') }}">Back to the list</a></button>
+{% endblock %}

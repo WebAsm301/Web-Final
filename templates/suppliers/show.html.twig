@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+  <h1>Supplier information and Product</h1>
+
+  <table>
+    <tbody>
+    <tr>
+      <th>Id</th>
+      <td>{{ suppliers.id }}</td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td>{{ suppliers.Suppliername }}</td>
+    </tr>
+    <tr>
+      <th>Product</th>
+      <td>{{ suppliers.books.bookname }}</td>
+    </tr>
+  </table>
+
+  <ul>
+    <ul>
+      <button><a href="{{ path('app_suppliers_index') }}">Back to the list</a></button>
+    </ul>
+    <ul>
+      <button><a href="{{ path('app_suppliers_edit', { 'id': suppliers.id }) }}">Edit</a></button>
+    </ul>
+    <ul onclick = "return confirm('Are u sure u want to delete?')">
+      {{ form_start(delete_form) }}
+      <input type="submit" value="Delete">
+      {{ form_end(delete_form) }}
+    </ul>
+  </ul>
+{% endblock %}

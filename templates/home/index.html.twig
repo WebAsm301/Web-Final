@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+    {% block stylesheets %}
+    <style>
+
+    table {
+        padding-top: 10px;
+        border: none;
+        background: none;
+        text-align: center;
+    }
+
+    .menu {
+        margin: auto;
+        padding: 10px 18px;
+        font-size: 15px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #90e0ef;
+        background-color: #0096c7;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 6px #01161e;
+    }
+
+    .menu:hover {
+        background-color: #0077b6
+    }
+
+    .menu:active {
+        background-color: #0077b6;
+        box-shadow: 0 5px #01161e;
+        transform: translateY(4px);
+    }
+
+    body {
+        background-color: #f1faee;
+    }
+
+    table {     
+        margin: auto;
+    }
+
+    h1 {
+        color: black;
+        text-align: center;
+    }
+
+    p, ul {
+        color: black;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    </style>
+    {% endblock %}
+
+    {% block body %}
+        <tbody>
+                <h1>Wellcome to 3 Tree Library</h1>
+            <table>
+                <tr>
+                    <td colspan="4"> <img src="{{ asset('images/banner_sach.png') }}"width="1000px"></td>   
+                </tr>
+
+                <tr class="img">
+                <td> <img src="{{ asset('images/sach1.png') }}" width="250px"></td>
+                <td> <img src="{{ asset('images/sach2.png') }}" width="250px"></td>
+                <td> <img src="{{ asset('images/sach3.png') }}" width="250px"></td>
+                <td> <img src="{{ asset('images/sach4.png') }}" width="250px"></td>
+                </tr>
+            </table>
+
+            <p>We have a wide variety of books for you to choose from, ever world books, business, science, nature, or even novels and comics for kids.</p>
+            <p>If you need any help, or you want to work with us, you can contact us through the following methods:</p>
+            <div>
+            <p>Contact Us: </p>
+            <p><a href="mailto: thinhdtgcd210397@fpt.edu.vn">thinhdtgcd210397@fpt.edu.vn</a></p>
+            <p><a href="mailto: HieuNDMGCD210003@fpt.edu.vn">HieuNDMGCD210003@fpt.edu.vn</a></p>
+            <p><a href="mailto: NhanLTGCD210460@fpt.edu.vn">NhanLTGCD210460@fpt.edu.vn</a></p>
+            <P>Phone:</p>
+            <p><a href="tel:+8412 3456 789">+8412 3456 789</a></p>
+            <p><a href="tel:+8433 4444 555">+8433 4444 555</a></p>
+            <p><a href="tel:+8455 6666 777">+8455 6666 777</a></p>
+            </div>
+        </tbody>
+    {% endblock %}

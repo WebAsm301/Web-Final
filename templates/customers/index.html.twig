@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books list{% endblock %}
+
+{% block body %}
+    <h1>Customers list</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Birth day</th>
+                <th>actions</th>
+            </tr>
+        </tbody>
+        <tbody>
+        {% for Customers in customers %}
+            <tr>
+                <td>{{ Customers.id }}</td>
+                <td>{{ Customers.Customername }}</td>
+                <td>{{ Customers.Birthday|date('Y-m-d') }}</td>
+                <td>
+                    <button><a href="{{ path('app_customers_show', {'id': Customers.id}) }}" class="btn btn-success">show</a></button>
+                    <button><a href="{{ path('app_customers_edit', {'id': Customers.id}) }}" class="btn btn-warning">edit</a></button>
+                    <button class="delete_btn"><a href="{{ path('app_customers_delete', {'id': Customers.id}) }}" class='btn btn-danger' onclick = "return confirm('Are u sure u want to delete?')">Delete</a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_customers_new') }}">Create new</a>
+{% endblock %}
