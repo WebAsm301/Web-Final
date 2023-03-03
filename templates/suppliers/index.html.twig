@@ -15,15 +15,15 @@
             </tr>
         </tbody>
         <tbody>
-        {% for suppliers in suppliers %}
+        {% for supplier in suppliers %}
             <tr>
-                <td>{{ suppliers.id }}</td>
-                <td>{{ suppliers.SupplierName }}</td>
-                <td>{{ suppliers.SupplierNation }}</td>
+                <td>{{ supplier.id }}</td>
+                <td>{{ supplier.SupplierName }}</td>
+                <td>{{ supplier.SupplierNation }}</td>
                 <td>
-                    <button><a href="{{ path('app_suppliers_show', {'id': suppliers.id}) }}" class="btn btn-success">show</a></button>
-                    <button><a href="{{ path('app_suppliers_edit', {'id': suppliers.id}) }}" class="btn btn-warning">edit</a></button>
-                    <button class="delete_btn"><a href="{{ path('app_suppliers_delete', {'id': suppliers.id}) }}" class='btn btn-danger' 
+                    <button><a href="{{ path('app_suppliers_show', {'id': supplier.id}) }}" class="btn btn-success">show</a></button>
+                    <button><a href="{{ path('app_suppliers_edit', {'id': supplier.id}) }}" class="btn btn-warning">edit</a></button>
+                    <button class="delete_btn"><a href="{{ path('app_suppliers_delete', {'id': supplier.id}) }}" class='btn btn-danger' 
                     onclick = "return confirm('Are u sure u want to delete?')">Delete</a></button>
                 </td>
             </tr>
