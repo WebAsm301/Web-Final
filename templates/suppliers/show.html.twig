@@ -36,7 +36,7 @@
     <ul>
       <button><a href="{{ path('app_suppliers_edit', { 'id': supplier.id }) }}">Edit</a></button>
     </ul>
-    <ul onclick = "return confirm('Are u sure u want to delete?')">
+    <ul onclick = "return confirm('Are you sure you want to delete?')">
       {{ form_start(delete_form) }}
       <input type="submit" value="Delete">
       {{ form_end(delete_form) }}
