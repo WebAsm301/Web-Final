@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Customers list</h1>
-
+    <button class="create_btn"><a href="{{ path('app_customers_new') }}">Create new</a></button>
     <table>
         <tbody>
             <tr>
@@ -34,5 +34,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_customers_new') }}">Create new</a>
+
 {% endblock %}
