@@ -6,6 +6,7 @@ use App\Entity\Customers;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class CustomersType extends AbstractType
 {
@@ -13,7 +14,9 @@ class CustomersType extends AbstractType
     {
         $builder
             ->add('Customer_name')
-            ->add('Birth_day')
+            ->add('Birth_day', DateType::class, [
+                'years' => range(2023, 1990)
+            ])
         ;
     }
 

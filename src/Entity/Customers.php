@@ -30,7 +30,7 @@ class Customers
     private $Birth_day;
 
     /**
-     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="customer_id")
+     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="customers")
      */
     private $order;
 
@@ -68,14 +68,14 @@ class Customers
      */
     public function getOrders(): Collection
     {
-        return $this->orders;
+        return $this->order;
     }
 
-    public function addProduct(Orders $order): self
+    public function addOrders(Orders $order): self
     {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->setOrders($this);
+        if (!$this->order->contains($order)) {
+            $this->order[] = $order;
+            $order->setCustomers($this);
         }
 
         return $this;
@@ -83,10 +83,10 @@ class Customers
 
     public function removeProduct(Orders $orders): self
     {
-        if ($this->orders->removeElement($orders)) {
+        if ($this->order->removeElement($orders)) {
             // set the owning side to null (unless already changed)
-            if ($orders->getOrders() === $this) {
-                $orders->setOrders(null);
+            if ($orders->getCustomers() === $this) {
+                $orders->setCustomers(null);
             }
         }
 

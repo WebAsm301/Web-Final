@@ -34,10 +34,18 @@ class Books
      */
     private $products;
 
-    public function __construct()
+    public function __constring()
     {
         $this->suppliers = new ArrayCollection();
+    }
+
+    public function __construct()
+    {
         $this->products = new ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->bookname;
     }
 
     public function getId(): ?int

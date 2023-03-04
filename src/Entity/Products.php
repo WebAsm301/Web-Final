@@ -35,13 +35,13 @@ class Products
     private $Price;
 
     /**
-     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="product_id")
+     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="products")
      */
     private $order;
 
     public function __construct()
     {
-        $this->orders = new ArrayCollection();
+        $this->order = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,14 +97,14 @@ class Products
      */
     public function getOrders(): Collection
     {
-        return $this->orders;
+        return $this->order;
     }
 
     public function addOrders(Orders $order): self
     {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->setOrders($this);
+        if (!$this->order->contains($order)) {
+            $this->order[] = $order;
+            $order->setProducts($this);
         }
 
         return $this;
@@ -112,10 +112,10 @@ class Products
 
     public function removeOrders(Orders $orders): self
     {
-        if ($this->orders->removeElement($orders)) {
+        if ($this->order->removeElement($orders)) {
             // set the owning side to null (unless already changed)
-            if ($orders->getOrders() === $this) {
-                $orders->setOrders(null);
+            if ($orders->getProducts() === $this) {
+                $orders->setProducts(null);
             }
         }
 

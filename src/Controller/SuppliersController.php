@@ -34,10 +34,10 @@ class SuppliersController extends AbstractController
     public function new(Request $request, SuppliersRepository $suppliersRepository): Response
     {
         $supplier = new Suppliers();
-        $form = $this->createForm('App\Form\SuppliersType', $supplier);
-        $form->handleRequest($request);
+        $supplier = $this->createForm(BooksType::class, 'App\Form\SuppliersType', $supplier);
+        $supplier->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($supplier->isSubmitted() && $supplier->isValid()) {
             $suppliersRepository->add($supplier);
             $suppliersRepository = $this->getDoctrine()->getManager();
             $suppliersRepository->persist($supplier);
@@ -48,7 +48,7 @@ class SuppliersController extends AbstractController
 
         return $this->renderForm('suppliers/new.html.twig', [
             'supplier' => $supplier,
-            'form' => $form,
+            'form' => $supplier,
         ]);
     }
     

@@ -26,6 +26,7 @@ class Suppliers
 
     /**
      * @ORM\ManyToOne(targetEntity=Books::class, inversedBy="suppliers")
+     * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
      */
     private $book;
 

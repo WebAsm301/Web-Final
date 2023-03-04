@@ -33,7 +33,7 @@ class OrdersController extends AbstractController
     public function new(Request $request, OrdersRepository $ordersRepository): Response
     {
         $order = new Orders();
-        $form = $this->createForm('App\Form\OrdersType', $order);
+        $form = $this->createForm(ProductsType::class, CustomersType::class, 'App\Form\OrdersType', $order);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
