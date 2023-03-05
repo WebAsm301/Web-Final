@@ -16,9 +16,14 @@
       <td>{{ suppliers.Suppliername }}</td>
     </tr>
     <tr>
-      <th>Product</th>
-      <td>{{ suppliers.books.bookname }}</td>
+      <th>Birth Day</th>
+      <td>{{ suppliers.Birthday|date('Y-m-d') }}</td>
     </tr>
+    <tr>
+      <th>Nation</th>
+      <td>{{ suppliers.SupplierNation }}</td>
+    </tr>
+    <tr>
   </table>
 
   <ul>

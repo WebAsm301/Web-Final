@@ -4,7 +4,6 @@
 
 {% block body %}
     <h1>Orders</h1>
-    <button class="create_btn"><a href="{{ path('app_orders_new') }}">Create new</a></button>
     <table class="table">
         <thead>
             <tr>
@@ -22,7 +21,6 @@
                 <td>{{ order.customers.customername }}</td>
                 <td>
                     <button><a href="{{ path('app_orders_show', {'id': order.id}) }}" class="btn btn-success">show</a></button>
-                    <button><a href="{{ path('app_orders_edit', {'id': order.id}) }}" class="btn btn-warning">edit</a></button>
                 </td>
             </tr>
         {% else %}
