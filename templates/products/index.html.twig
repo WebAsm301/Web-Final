@@ -22,12 +22,12 @@
                 <td>
                     <button><a href="{{ path('app_products_show', {'id': product.id}) }}" class="btn btn-success">show</a></button>
                     <button><a href="{{ path('app_products_edit', {'id': product.id}) }}" class="btn btn-warning">edit</a></button>
-                    <button class="delete_btn"><a href="{{ path('app_products_delete', {'id': product.id}) }}" class='btn btn-danger' onclick = "return confirm('Are u sure u want to delete?')">Delete</a></button>
+                    <button class="delete_btn"><a href="{{ path('app_products_delete', {'id': product.id}) }}" class='btn btn-danger' onclick = "return confirm('Are you sure you want to delete?')">Delete</a></button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">No Records Found</td>
             </tr>
         {% endfor %}
         </tbody>
