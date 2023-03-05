@@ -25,19 +25,23 @@ class Suppliers
     private $Supplier_name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Books::class, inversedBy="suppliers")
-     * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
+     * @ORM\Column(type="date")
      */
-    private $book;
+    private $Birth_day;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Supplier_nation;
 
     /**
      * @ORM\OneToMany(targetEntity=Products::class, mappedBy="supplier_id")
      */
-    private $products;
+    private $product;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -57,14 +61,26 @@ class Suppliers
         return $this;
     }
 
-    public function getBooks(): ?Books
+    public function getSupplierNation(): ?string
     {
-        return $this->book;
+        return $this->Supplier_nation;
     }
 
-    public function setBooks(?Books $books): self
+    public function setSupplierNation(string $Supplier_nation): self
     {
-        $this->book = $books;
+        $this->Supplier_nation = $Supplier_nation;
+
+        return $this;
+    }
+
+    public function getBirthDay(): ?\DateTimeInterface
+    {
+        return $this->Birth_day;
+    }
+
+    public function setBirthDay(\DateTimeInterface $Birth_day): self
+    {
+        $this->Birth_day = $Birth_day;
 
         return $this;
     }
@@ -74,25 +90,25 @@ class Suppliers
      */
     public function getProducts(): Collection
     {
-        return $this->products;
+        return $this->product;
     }
 
-    public function addProduct(Products $product): self
+    public function addProducts(Products $product): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->setProducts($this);
+        if (!$this->product->contains($product)) {
+            $this->product[] = $product;
+            $product->setSuppliers($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Products $products): self
+    public function removeSupplier(Products $products): self
     {
-        if ($this->products->removeElement($products)) {
+        if ($this->product->removeElement($products)) {
             // set the owning side to null (unless already changed)
-            if ($products->getProducts() === $this) {
-                $products->setProducts(null);
+            if ($products->getSuppliers() === $this) {
+                $products->setSuppliers(null);
             }
         }
 

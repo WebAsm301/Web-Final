@@ -34,6 +34,11 @@ class Customers
      */
     private $order;
 
+        public function __construct()
+    {
+        $this->order = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

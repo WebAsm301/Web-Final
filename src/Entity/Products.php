@@ -22,7 +22,7 @@ class Products
         /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $productName;
 
     /**
      * @ORM\ManyToOne(targetEntity=Suppliers::class, inversedBy="products")
@@ -56,14 +56,14 @@ class Products
         return $this;
     }
 
-        public function getBookname(): ?string
+        public function getProductName(): ?string
     {
-        return $this->name;
+        return $this->productName;
     }
 
-    public function setBookname(string $name): self
+    public function setProductName(string $productName): self
     {
-        $this->name = $name;
+        $this->productName = $productName;
 
         return $this;
     }

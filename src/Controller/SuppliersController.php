@@ -29,15 +29,17 @@ class SuppliersController extends AbstractController
     }
 
     /**
+     * Create a new supplier.
+     * 
      * @Route("/new", name="app_suppliers_new", methods={"GET", "POST"})
      */
     public function new(Request $request, SuppliersRepository $suppliersRepository): Response
     {
         $supplier = new Suppliers();
-        $supplier = $this->createForm(BooksType::class, 'App\Form\SuppliersType', $supplier);
-        $supplier->handleRequest($request);
+        $form = $this->createForm('App\Form\SuppliersType', $supplier);
+        $form->handleRequest($request);
 
-        if ($supplier->isSubmitted() && $supplier->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $suppliersRepository->add($supplier);
             $suppliersRepository = $this->getDoctrine()->getManager();
             $suppliersRepository->persist($supplier);
@@ -48,7 +50,7 @@ class SuppliersController extends AbstractController
 
         return $this->renderForm('suppliers/new.html.twig', [
             'supplier' => $supplier,
-            'form' => $supplier,
+            'form' => $form,
         ]);
     }
     

@@ -33,7 +33,7 @@ class CustomersController extends AbstractController
     public function new(Request $request, CustomersRepository $customersRepository): Response
     {
         $customer = new Customers();
-        $form = $this->createForm(Customers::class, $customer);
+        $form = $this->createForm('App\Form\CustomersType', $customer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -17,7 +17,7 @@ class ProductsType extends AbstractType
     {
         $builder
             ->add('Price', IntegerType::class)
-            ->add('books', BooksType::class)
+            ->add('productName')
         ;
     }
 
