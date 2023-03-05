@@ -23,12 +23,14 @@ class Orders
     private $Date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Products::class, inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity=Products::class, inversedBy="orders", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Customers::class, inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity=Customers::class, inversedBy="orders", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $customer;
 

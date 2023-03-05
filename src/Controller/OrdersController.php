@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\AbstractType;
 /**
@@ -33,7 +34,7 @@ class OrdersController extends AbstractController
     public function new(Request $request, OrdersRepository $ordersRepository): Response
     {
         $order = new Orders();
-        $form = $this->createForm(ProductsType::class, CustomersType::class);
+        $form = $this->createForm(OrdersType::class, $order);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

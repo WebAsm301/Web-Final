@@ -19,6 +19,11 @@ class Products
      */
     private $id;
 
+        /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     /**
      * @ORM\ManyToOne(targetEntity=Suppliers::class, inversedBy="products")
      */
@@ -30,7 +35,7 @@ class Products
     private $Price;
 
     /**
-     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="products")
+     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="product", cascade={"persist"})
      */
     private $order;
 
@@ -47,6 +52,18 @@ class Products
     public function setID(int $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+        public function getBookname(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setBookname(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

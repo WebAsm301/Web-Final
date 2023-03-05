@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Products;
 use App\Form\ProductsType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Repository\ProductsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Form;
@@ -33,7 +34,7 @@ class ProductsController extends AbstractController
     public function new(Request $request, ProductsRepository $productsRepository): Response
     {
         $product = new Products();
-        $form = $this->createForm('App\Form\ProductsType', $product);
+        $form = $this->createForm(ProductsType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

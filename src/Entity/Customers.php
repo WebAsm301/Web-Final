@@ -30,7 +30,7 @@ class Customers
     private $Birth_day;
 
     /**
-     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="customers")
+     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="customers", cascade={"persist"})
      */
     private $order;
 

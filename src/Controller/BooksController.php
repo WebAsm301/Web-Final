@@ -33,7 +33,7 @@ class BooksController extends AbstractController
     public function new(Request $request, BooksRepository $booksRepository): Response
     {
         $book = new Books();
-        $form = $this->createForm('App\Form\BooksType', $book);
+        $form = $this->createForm(BooksType::class, $book);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

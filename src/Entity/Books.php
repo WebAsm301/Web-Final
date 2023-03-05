@@ -30,7 +30,7 @@ class Books
     private $suppliers;
 
 
-    public function __constring()
+    public function __construct()
     {
         $this->suppliers = new ArrayCollection();
     }
