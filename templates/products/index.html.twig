@@ -18,7 +18,7 @@
         {% for product in products %}
             <tr>
                 <td>{{ product.id }}</td>
-                <td>{{ product.suppliers.books.bookname }}</td>
+                <td>{{ product.productName}}</td>
                 <td>{{ product.Price }}$</td>
                 <td>
                     <button><a href="{{ path('app_products_show', {'id': product.id}) }}" class="btn btn-success">show</a></button>
