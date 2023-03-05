@@ -29,19 +29,10 @@ class Books
      */
     private $suppliers;
 
-            /**
-     * @ORM\OneToMany(targetEntity=Products::class, mappedBy="book_id")
-     */
-    private $products;
 
     public function __constring()
     {
         $this->suppliers = new ArrayCollection();
-    }
-
-    public function __construct()
-    {
-        $this->products = new ArrayCollection();
     }
 
     public function __toString() {
@@ -89,36 +80,6 @@ class Books
             // set the owning side to null (unless already changed)
             if ($suppliers->getBooks() === $this) {
                 $suppliers->setBooks(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Products[]
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
-
-    public function addProduct(Products $product): self
-    {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->setProducts($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Products $products): self
-    {
-        if ($this->products->removeElement($products)) {
-            // set the owning side to null (unless already changed)
-            if ($products->getProducts() === $this) {
-                $products->setProducts(null);
             }
         }
 

@@ -25,11 +25,6 @@ class Products
     private $supplier;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Books::class, inversedBy="products")
-     */
-    private $book;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $Price;
@@ -64,18 +59,6 @@ class Products
     public function setPrice(int $Price): self
     {
         $this->Price = $Price;
-
-        return $this;
-    }
-
-    public function getBooks(): ?Books
-    {
-        return $this->book;
-    }
-
-    public function setBooks(?Books $books): self
-    {
-        $this->book = $books;
 
         return $this;
     }

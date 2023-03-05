@@ -16,7 +16,7 @@ class ProductsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Price')
+            ->add('Price', IntegerType::class)
         ;
     }
 
